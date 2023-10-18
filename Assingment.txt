@@ -1,0 +1,212 @@
+package method;
+Q1)
+interface First
+{
+	void disp1();
+	
+}
+class second
+{
+	void fun1()
+	{
+		System.out.println("in fun1");
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		second s=new second();
+		First ref=s::fun1;
+		ref.disp1();
+	}
+}
+
+
+Q2)package method;
+interface Third
+{
+	void show(int num);
+}
+class sample
+{
+	void disp(int num)
+	{
+		System.out.println("in fun1"+num);
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		sample s=new sample();
+		Third ref=s::disp;
+		ref.show(500);
+	}
+
+}
+
+
+
+Q3)
+package method;
+interface Fifth
+{
+	int add(int a,int b);
+}
+class Math1
+{
+	int calc(int a,int b)
+	{
+		return a+b;
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Math1 m1= new Math1();
+		//lambda expression
+		Fifth ref1=(a,b)->{return (a+b);};
+		System.out.println(ref1.add(10, 20));
+		
+		
+		//method reference
+		Fifth ref=m1::calc;
+		System.out.println(ref.add(500,200));
+	}
+
+}
+
+
+
+
+Q4)
+package method;
+interface Sixth
+{
+	void disp5();
+}
+class Sample
+{
+	static void fun1()
+	{
+		System.out.println("in fun1");
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		
+		
+		//method reference
+		Sixth ref=Sample::fun1;
+		ref.disp5();
+	}
+
+}
+
+
+
+
+
+Q5)
+package method;
+interface Emp
+{
+	void show();
+}
+class MyClass
+{
+	MyClass()
+	{
+		System.out.println("inside def consturctor");
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		
+		MyClass e1=new MyClass();
+		Emp ref=MyClass::new;
+			//ref.show();
+	}
+
+}
+
+
+
+
+Q6)
+package method;
+interface Seventh
+{
+	void fun(int k);
+}
+class sample
+{
+	sample(int k)
+	{
+		System.out.println("inside parameterized constructor of sample\t" +k);
+	}
+}
+public class demo {
+
+	public static void main(String[] args) {
+		
+		Seventh ref=sample::new;
+		ref.fun(200);
+			
+	}
+
+}
+
+
+
+Q7)
+package method;
+interface MyInterface
+{
+	void show(student ref);
+}
+class student
+{
+	private String name;
+	private int age;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "student [name=" + name + ", age=" + age + "]";
+	}
+	
+	
+}
+public class demo {
+
+	public static void main(String[] args) {
+	
+		student s1=new student();
+			s1.setName("vijay");
+			s1.setAge(20);
+	
+		MyInterface ref=System.out::println;
+		ref.show(s1);
+	}
+
+}
