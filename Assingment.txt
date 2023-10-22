@@ -1,212 +1,347 @@
-package method;
 Q1)
-interface First
+class First
 {
-	void disp1();
+	int num1;
+	public First(int num1) 
+	{
+	       this.num1= num1;
+	       System.out.println(num1);
+	}
+	First()
+	{
+		System.out.println("constructor of first");
+	}
+	void disp1()
+	{
+		System.out.println("disp of first");
+	}
+}
+class Second
+{
+	int num2;
+	public Second(int num2)
+	{
+		this.num2=num2;
+		System.out.println(num2);
+	}
+	Second()
+	{
+		System.out.println("constructor of second");
+	}
+	void disp2()
+	{
+		System.out.println("dsip of second");
+	}
 	
 }
-class second
-{
-	void fun1()
-	{
-		System.out.println("in fun1");
-	}
-}
-public class demo {
+public class demo1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		second s=new second();
-		First ref=s::fun1;
-		ref.disp1();
+			First f1=new First(100);
+			Second s1=new Second(200); 
+			
+			f1.disp1();
+			s1.disp2();
 	}
+
 }
 
-
-Q2)package method;
-interface Third
+Q2)
+class First
 {
-	void show(int num);
-}
-class sample
-{
-	void disp(int num)
+	int var;
+	static int static_var;
+	public First(int k)
 	{
-		System.out.println("in fun1"+num);
+		this.var=k;
 	}
+	public void nonStaticmethod() 
+	{ 
+			System.out.println("Non-static method=" + var);
+    }
+
+	public static void staticmethod() 
+	{
+	        System.out.println("Static method=" + static_var);
+	}
+	
 }
-public class demo {
+
+
+
+public class demo1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		sample s=new sample();
-		Third ref=s::disp;
-		ref.show(500);
-	}
-
-}
-
-
-
-Q3)
-package method;
-interface Fifth
-{
-	int add(int a,int b);
-}
-class Math1
-{
-	int calc(int a,int b)
-	{
-		return a+b;
-	}
-}
-public class demo {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Math1 m1= new Math1();
-		//lambda expression
-		Fifth ref1=(a,b)->{return (a+b);};
-		System.out.println(ref1.add(10, 20));
 		
-		
-		//method reference
-		Fifth ref=m1::calc;
-		System.out.println(ref.add(500,200));
+		First f1=new First(500);
+		f1.nonStaticmethod();  
+        f1.static_var = 10;
+			
+        f1.staticmethod();  
+        f1.static_var = 50;
 	}
-
 }
-
 
 
 
 Q4)
-package method;
-interface Sixth
-{
-	void disp5();
-}
-class Sample
-{
-	static void fun1()
+package clientpackage;
+class Base{
+	int num1;
+	Base()
 	{
-		System.out.println("in fun1");
-	}
-}
-public class demo {
-
-	public static void main(String[] args) {
-		
-		
-		//method reference
-		Sixth ref=Sample::fun1;
-		ref.disp5();
-	}
-
+		num1=10;
+		System.out.println("in base const=" + num1);
+	}	
 }
 
+class Derived extends Base{
+	   int num2;  
+	   Derived()
+	   {
+		   num2=30;
+		   System.out.println("in derived cons="+ num2);
+	   }
+}
+
+
+public class First{
+	          public static void main(String []args) {
+	        	  Derived s=new Derived(); 
+	        	 //first it will call its immediate parent class constuctor
+	          }
+}
 
 
 
 
 Q5)
-package method;
-interface Emp
-{
-	void show();
-}
-class MyClass
-{
-	MyClass()
+package clientpackage;
+class Base{
+	int num1;
+	Base()
 	{
-		System.out.println("inside def consturctor");
-	}
-}
-public class demo {
-
-	public static void main(String[] args) {
-		
-		MyClass e1=new MyClass();
-		Emp ref=MyClass::new;
-			//ref.show();
-	}
-
+		num1=10;
+		System.out.println("in base const" + num1);
+	}	
 }
 
+class Derived extends Base{
+	   int num2;  
+	   Derived()
+	   {
+		   num2=30;
+		   System.out.println("in derived cons"+ num2);
+	   }
+}
 
+class Derived1 extends Derived{
+	     int num3;
+	     Derived1()
+	     {
+	    	 num3=50;
+	    	 System.out.println("in derived1 cons"+ num3);
+	     }
+}
+
+public class First{
+	          public static void main(String []args) {
+	        	  Derived1 s=new Derived1(); 
+	        	 //first it will call its immediate parent class constuctor
+	          }
+}
 
 
 Q6)
-package method;
-interface Seventh
-{
-	void fun(int k);
-}
-class sample
-{
-	sample(int k)
+package clientpackage;
+class Base{
+	int num1;
+	Base()
 	{
-		System.out.println("inside parameterized constructor of sample\t" +k);
-	}
-}
-public class demo {
-
-	public static void main(String[] args) {
-		
-		Seventh ref=sample::new;
-		ref.fun(200);
-			
-	}
-
+		num1=10;
+		System.out.println("in base const" + num1);
+	}	
 }
 
+class Derived extends Base{
+	   int num2;  
+	   Derived()
+	   {
+		   num2=30;
+		   System.out.println("in derived cons"+ num2);
+	   }
+}
+
+class Derived1 extends Base{
+	     int num3;
+	     Derived1()
+	     {
+	    	 num3=50;
+	    	 System.out.println("in derived1 cons"+ num3);
+	     }
+}
+
+public class First{
+	          public static void main(String []args) {
+	        	  Derived1 s=new Derived1(); 
+			//first it will call its immediate parent class constuctor
+	        	 
+	          }
+}
 
 
 Q7)
-package method;
-interface MyInterface
+package clientpackage;
+class Base
 {
-	void show(student ref);
+	int num1=10;
+	Base()
+	{
+		System.out.println("base const="+num1);
+	}
+	void disp()  //overriden method
+	{
+		System.out.println("base disp");
+	}
 }
-class student
+
+class Derived extends Base
 {
-	private String name;
-	private int age;
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public int getAge() {
-		return age;
-	}
-	
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	@Override
-	public String toString() {
-		return "student [name=" + name + ", age=" + age + "]";
-	}
-	
-	
+	   int num2=20;  
+	   Derived()
+	   {
+		   System.out.println("derived const="+num2);  
+	   }
+	   void disp()  //overridding method
+	   {
+		   System.out.println("derived disp");
+	   }
 }
-public class demo {
 
-	public static void main(String[] args) {
-	
-		student s1=new student();
-			s1.setName("vijay");
-			s1.setAge(20);
-	
-		MyInterface ref=System.out::println;
-		ref.show(s1);
+
+public class First{
+	          public static void main(String []args) {
+	        	  Derived s=new Derived(); 
+	        	 s.disp();
+	          }
+}
+
+
+
+
+Q8)
+package clientpackage;
+class parent
+{
+	void disp()  //overriden method
+	{
+		System.out.println("parent disp");
 	}
+}
 
+class child extends parent
+{
+	   void disp(int k)  //overridding method
+	   {
+		   System.out.println("child disp");
+	   }
+}
+
+
+public class First{
+	          public static void main(String []args) {
+	        	  child s=new child(); 
+	        	 s.disp(50);
+	          }
+}
+
+
+
+
+Q9)
+package clientpackage;
+class shape
+{
+	void draw() 
+	{
+		
+	}
+}
+
+class polygon extends shape
+{
+	void draw()
+	{
+		System.out.println("draw polygon");
+	}
+}
+class rectangle extends shape
+{
+	void draw()
+	{
+		System.out.println("draw rectangle");
+	}
+}
+class square extends shape
+{
+	void draw()
+	{
+		System.out.println("draw square");
+	}
+}
+
+
+
+public class shapedemo{
+	
+	public static void perform(shape ref)
+	{
+		ref.draw();
+	}
+	
+	public static void main(String []args) 
+	{
+	        perform(new rectangle());
+	        perform(new square());
+	        perform(new polygon());
+	         }
+}
+
+
+
+Q10)
+package clientpackage;
+interface vehicle
+{
+	void start();
+}
+class twowheeler implements vehicle
+{
+	public void start()
+	{
+		System.out.println("start twowheeler");
+	}
+}
+class threewheeler implements vehicle
+{
+	public void start()
+	{
+		System.out.println("start threewheeler");
+	}
+}
+
+public class vdemo{
+
+	public static void main(String []args) 
+	
+		{
+	       vehicle arr[]=new vehicle[2];
+	       arr[0]=new twowheeler();
+	       arr[1]=new threewheeler();
+	       for(int i=0;i<arr.length;i++)
+	    		   {
+	    	   			arr[i].start();
+	    		   }
+	    }
 }
