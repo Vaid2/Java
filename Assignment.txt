@@ -1,0 +1,284 @@
+
+import java.lang.*;
+import java.util.*;
+Q1)
+class shape
+{
+	private int height ;
+	private int width;
+	public void setWidth(int w)
+	{
+		width= w;
+	}
+	public void setHeight(int h)
+	{
+		height= h;
+	}
+	public void getWidth()
+	{
+		System.out.println("The width is "+width);
+	}
+	public void getHeight()
+	{
+		System.out.println("The height is "+height);
+	}
+	public void getArea()
+	{
+		int area= height*width;
+		System.out.println("Area : "+area);
+	}
+}
+
+public class EX01_Getter_Setter
+{
+	public static void main(String args[])
+	{
+		shape s1= new shape();
+		s1.setWidth(10);
+		s1.setHeight(100);
+		s1.getWidth();
+		s1.getHeight();
+		s1.getArea();
+	}
+}
+
+
+Q2)
+package Day_2;
+
+public class EX02_Constructor
+{
+	EX02_Constructor()
+	{
+		System.out.println("Constructor");
+	}
+	EX02_Constructor(int a)
+	{
+		System.out.println("Constructor with 1 argument a: "+a);
+	}
+	EX02_Constructor(int x, int y)
+	{
+		System.out.println("Constructor with 2 argument x: "+x+" and y: " +y);
+	}
+	
+	public static void main(String args[])
+	{
+		EX02_Constructor m1= new EX02_Constructor();
+		EX02_Constructor m2= new EX02_Constructor(78);
+		EX02_Constructor m3= new EX02_Constructor(12,30);
+	}
+}
+
+Q3)
+package Day_2;
+
+class Emp
+{
+	private static int cnt=16;
+	
+	public static int getCnt()
+	{
+		return cnt;
+	}
+}
+
+public class EX03_Static_Member
+{
+	public static void main(String args[])
+	{
+		Emp e1=new Emp();
+		System.out.println(e1.getCnt());
+	}
+}
+
+
+Q4)package Day_2;
+
+class DemoOb
+{
+	private int id;
+	public int getId() 
+	{
+		return id;
+	}
+	
+	public void setId(int id) 
+	{
+		this.id = id;
+	}
+}
+public class EX04_Instance_of_Class
+{
+	public static void main(String []args)
+	{
+		DemoOb ob1=new DemoOb(); 
+		ob1.setId(12); 
+		System.out.println(ob1.getId()); 
+		
+		DemoOb ob2=ob1; 
+		
+		System.out.println(ob2.getId()); 
+		ob2.setId(45);
+		System.out.println(ob2.getId()); 
+		
+		ob1=new DemoOb(); 
+		ob1.setId(10);
+		System.out.println(ob1.getId()); 
+	}
+}
+
+
+Q5)
+package Day_2;
+
+import java.util.Scanner;
+
+class A
+{
+	private int num;
+	private static int cnt=0;
+	public static int getCnt() 
+	{
+		return cnt;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+	public void setNum(int num) 
+	{
+		this.num = num;
+	}
+}
+
+class B
+{
+	private int num;
+	private static int cnt=10;
+	
+	public static int getCnt() 
+	{
+		return cnt;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+	public void setNum(int num) 
+	{
+		this.num = num;
+	}
+}
+
+class C
+{
+	private int num;
+	private static int cnt=100;
+	public static int getCnt() 
+	{
+		return cnt;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+	public void setNum(int num) 
+	{
+		this.num = num;
+	}
+}
+
+public class EX05_Static_NonStatic_Member
+{
+	public static void main(String []args)
+	{
+		A a1=new A();
+		B b1=new B();
+		C c1=new C();
+		
+		a1.setNum(5);
+		b1.setNum(25);
+		c1.setNum(125);
+		
+		System.out.println(a1.getNum()+"\t"+A.getCnt());
+		System.out.println(b1.getNum()+"\t"+B.getCnt());
+		System.out.println(c1.getNum()+"\t"+C.getCnt());
+	}
+}
+
+
+
+
+Q6)
+
+package Day_2;
+
+import java.util.Scanner;
+
+class A1
+{
+	static
+	{
+		System.out.println("in A");
+	}
+	private int num;
+	A1(int num)
+	{
+		System.out.println("in A constructo");
+		this.num=num;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+}
+
+class B1
+{
+	static
+	{
+		System.out.println("in B");
+	}
+	private int num;
+	B1(int num)
+	{
+		System.out.println("in B constuctor");
+		this.num=num;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+}
+
+class C1
+{
+	static
+	{
+		System.out.println("in C");
+	}
+	private int num;
+	C1(int num)
+	{
+		System.out.println("in C constuctor");
+		this.num=num;
+	}
+	public int getNum() 
+	{
+		return num;
+	}
+}
+public class EX06_Static_Block
+{
+	static
+	{
+		System.out.println("in Demo ");
+	}
+	public static void main(String []args)
+	{
+		A1 a1=new A1(10);
+		B1 b1=new B1(20);
+		C1 c1=new C1(30);
+	}
+}
+
