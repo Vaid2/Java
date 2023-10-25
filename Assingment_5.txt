@@ -1,0 +1,382 @@
+Q1)
+
+package clientpackage;
+class Base
+{
+	int num;
+	Base()
+	{
+		System.out.println("base constructor");
+	}
+	Base(int k)
+	{
+		num=k;
+		System.out.println(k);
+	}
+	
+}
+class child1 extends Base
+{
+	child1()
+	{
+		super(50);
+		System.out.println("child1 constructor");
+	}
+}
+class child2 extends child1
+{
+	child2()
+	{
+		System.out.println("child2 constructor");
+	}
+}
+
+public class vdemo{
+
+	public static void main(String []args) 
+		{
+			child2 ch=new child2();
+			//Base b=new Base(50);
+	    }
+}
+
+
+Q2)
+
+package clientpackage;
+class Vehicle
+{
+	public void start()
+	{
+		System.out.println("vehicle start");
+	}
+}
+class fourwheeler extends Vehicle
+{
+	public void start()
+	{
+		System.out.println("fourwheeler start");
+	}
+}
+
+public class Vdemo{
+
+	public static void main(String []args) {
+		fourwheeler f=new fourwheeler();
+		f.start();
+	}
+		
+}
+
+
+
+Q3)
+package clientpackage;
+class parent
+{
+	parent()
+	{
+		System.out.println("parent constructor");
+	}
+}
+class child1 extends parent
+{
+	child1()
+	{
+		System.out.println("child1 constructor");
+	}
+}
+class child2 extends parent
+{
+	child2()
+	{
+		System.out.println("child2 constructor");
+	}
+}
+public class Vdemo{
+
+	public static void main(String []args) {
+		child1 ch1=new child1();
+		child2 ch2=new child2();
+	}
+		
+}
+
+Q4)
+
+package clientpackage;
+class Top1
+{
+	void disp1()
+	{
+		System.out.println("Top1 disp1");
+	}
+}
+class Bottom1 extends Top1
+{
+	void disp1()
+	{
+		System.out.println("Bottom1 disp1");
+	}
+}
+class Bottom2 extends Bottom1
+{
+	void disp1()
+	{
+		System.out.println("Bottom2 disp1");
+	}
+}
+class Bottom3 extends Bottom2
+{
+	void disp1()
+	{
+		System.out.println("Bottom3 disp1");
+	}
+}
+public class Vdemo{
+	public static void perform(Top1 ref)
+	{
+		ref.disp1();
+	}
+
+	public static void main(String []args) {
+		perform(new Top1());
+		perform(new Bottom1());
+		perform(new Bottom2());
+		perform(new Bottom3());
+		
+	}	
+}
+
+
+
+Q5)
+package clientpackage;
+abstract class Shape
+{
+	public abstract void draw();
+}
+class triangle extends Shape
+{
+	public void draw()
+	{
+		System.out.println("draw triangle");
+	}
+}
+class polygon extends Shape
+{
+	public void draw()
+	{
+		System.out.println("draw polygon");
+	}
+}
+class circle extends Shape
+{
+	public void draw()
+	{
+		System.out.println("draw circle");
+	}
+}
+public class Vdemo{
+
+	public static void main(String []args) {
+		Shape arr[]=new Shape[3];
+		arr[0]=new triangle();
+		arr[1]=new polygon();
+		arr[2]=new circle();
+		for(int i=0;i<arr.length;i++)
+		{
+			arr[i].draw();
+		}
+	}	
+}
+
+
+
+Q6)
+package clientpackage;
+interface A
+{
+	void disp1();
+}
+interface B extends A
+{
+	void disp2();
+}
+class C implements B
+{
+	public void disp3()
+	{
+		System.out.println("disp3");
+	}
+	public void disp2()
+	{
+		System.out.println("disp2");
+	}
+	public void disp1()
+	{
+		System.out.println("disp1");
+	}
+}
+public class Vdemo{
+
+	public static void main(String []args) {
+		C c1=new C();
+		c1.disp1();
+		c1.disp2();
+		c1.disp3();
+		
+		//((A)c1).disp1();
+	}
+		
+}
+
+
+
+Q7)
+package clientpackage;
+
+class Parent1
+{
+	int num1;
+	public Parent1(int num1)
+	{
+		this.num1=num1;
+	}
+	public int getNum()
+	{
+		return num1;
+	}
+}
+interface Parent2 
+{
+	void method();
+}
+class child extends Parent1 implements Parent2
+{
+	public child(int num1)
+	{
+		super(50);
+	}
+	public void method()
+	{
+		System.out.println("method of parent2");
+	}
+}
+public class Vdemo{
+
+	public static void main(String []args) {
+		
+		child c=new child(500);
+		System.out.println(c.getNum());
+		c.method();
+	}
+		
+}
+
+
+
+Q8)
+package clientpackage;
+
+class base1
+{
+	int num1;
+	base1(int num1)
+	{
+		this.num1=num1;
+	}
+	int getNum1()
+	{
+		return num1;
+	}
+}
+class sub1 extends base1
+{
+	int num2;
+	sub1()
+	{
+		super(50);
+		System.out.println("base constructor");
+	}
+	sub1(int num1)
+	{
+		super(200);
+	}
+	sub1(int num1,int num2)
+	{
+		super(800);
+		this.num2=num2;
+	}
+	int getNum2()
+	{
+		return num2;
+	}
+	
+}
+public class Vdemo{
+
+	public static void main(String []args) {
+		sub1 s1=new sub1();
+		System.out.println(s1.getNum1());
+		System.out.println(s1.getNum2());
+		System.out.println("----------");
+		sub1 s2=new sub1(4000);
+		System.out.println(s2.getNum1());
+		System.out.println(s2.getNum2());
+		System.out.println("----------");
+		sub1 s3=new sub1(1000,2000);
+		System.out.println(s3.getNum1());
+		System.out.println(s3.getNum2());
+	}
+		
+}
+
+
+
+
+Q9)
+package clientpackage;
+
+interface Game
+{
+	abstract void play();
+}
+class cricket implements Game
+{
+	public void play()
+	{
+		System.out.println("palying cricket");
+	}
+	
+}
+class football implements Game
+{
+	public void play()
+	{
+		System.out.println("palying football");
+	}
+}
+class tennis implements Game
+{
+	public void play()
+	{
+		System.out.println("palying tenis");
+	}
+}
+
+public class Demo{
+	
+	public static void perform(Game ref)
+	{
+		ref.play();
+	}
+
+	public static void main(String []args) {
+		perform(new cricket());
+		perform(new football());
+		perform(new tennis());
+	}
+		
+}
+
